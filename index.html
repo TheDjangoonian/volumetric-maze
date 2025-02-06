@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="overlay">
-        <h1>Volumetric Maze</h1>
-        <p>Click to enter first-person mode.</p>
-        <p>WASD to move | Mouse to look</p>
-    </div>
     <script type="module" src="visualization.js"></script>
-		<script type="module">
-    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.min.js';
-    import { VolumetricMaze } from './generation.js';
-    import { setupVisualization } from './visualization.js';
+    <script type="module">
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.min.js';
+        import { VolumetricMaze } from './generation.js';
+        import { setupVisualization } from './visualization.js';
 
-    setupVisualization(THREE, VolumetricMaze);
-	</script>
+        document.addEventListener("DOMContentLoaded", () => {
+            setupVisualization(THREE, VolumetricMaze);
+            document.documentElement.requestFullscreen().then(() => {
+                document.body.requestPointerLock();
+            }).catch(err => console.warn("Fullscreen request denied:", err));
+        });
+    </script>
 </body>
 </html>
