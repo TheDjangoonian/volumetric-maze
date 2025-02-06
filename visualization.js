@@ -35,7 +35,10 @@ const player = {
 
 // Mouse Look Variables
 let yaw = 0, pitch = 0;
-document.addEventListener("click", () => document.body.requestPointerLock());
+document.body.requestPointerLock = document.body.requestPointerLock || document.body.mozRequestPointerLock || document.body.webkitRequestPointerLock;
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.requestPointerLock();
+});
 document.addEventListener("mousemove", (event) => {
     if (document.pointerLockElement) {
         yaw -= event.movementX * player.lookSensitivity;
